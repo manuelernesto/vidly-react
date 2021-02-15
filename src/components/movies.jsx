@@ -13,8 +13,14 @@ class Movies extends Component {
     };
 
     render() {
+        const {length: count} = this.state.movies;
+
+        if (count === 0)
+            return <p className="alert alert-info">There are no movie in the database</p>
+
         return (
             <React.Fragment>
+                <p>Showing {count} in the database</p>
                 <table className="table">
                     <thead>
                     <tr>
@@ -27,7 +33,7 @@ class Movies extends Component {
                     </thead>
                     <tbody>
                     {this.state.movies.map(movie => (
-                        <tr>
+                        <tr key={movie._id}>
                             <td>{movie.title}</td>
                             <td>{movie.genre.name}</td>
                             <td>{movie.numberInStock}</td>
